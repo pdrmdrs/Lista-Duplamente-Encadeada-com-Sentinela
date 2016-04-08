@@ -182,15 +182,19 @@ bool LIS_InserirFim(Lista lista, int v)
 bool LIS_Inserir(Lista lista, int v, int i)
 {
    
-    if(i > lista->tamanho+1)  //lista->tamanho +1 > i  
+    if(i > lista->tamanho+1)//tentando adicionar numa posicao fora do tamanho do vetor
     {
         return false;
     }
-    else if(i == 1)
+    else if(i == 1)//adicionar no inicio
     {
         LIS_InserirInicio(lista, v);
     }
-    else
+    else if(i == lista->tamanho)//adicionar no final
+    {
+        LIS_InserirFim(lista, v);
+    }
+    else//adicionar em uma outra posicao
     {
         int indice = 1;
 
