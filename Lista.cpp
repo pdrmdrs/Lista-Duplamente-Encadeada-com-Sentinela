@@ -182,7 +182,7 @@ bool LIS_InserirFim(Lista lista, int v)
 bool LIS_Inserir(Lista lista, int v, int i)
 {
    
-    if(i > lista->tamanho)//tentando adicionar numa posicao fora do tamanho do vetor
+    if(i > lista->tamanho)//tentando adicionar numa posicao maior que o tamanho do vetor
     {
         return false;
     }
@@ -224,7 +224,7 @@ bool LIS_Inserir(Lista lista, int v, int i)
             else
             {
                 no_iterador = no_iterador->proximo;
-                indice++;
+                indice += 1;
             }
         }
     }
@@ -239,6 +239,35 @@ bool LIS_Inserir(Lista lista, int v, int i)
  */
 int LIS_RemoverInicio(Lista lista)
 {    
+    if( lista->tamanho > 0 )
+    {
+        No ultimo = lista->cauda->anterior;
+        
+        lista->cauda->anterior = ultimo->anterior;
+        
+        ultimo->anterior->proximo = lista->cauda;
+        
+        int valor = ultimo->valor;
+        
+        lista->tamanho -= 1;
+        
+        DestruirNo(ultimo);
+        
+        return valor;
+    }
+    else
+    {
+        return -1;
+    }
+}
+
+/*
+ Função que remove um valor no fim da lista.
+ @param lista - lista em que será feita a remoção
+ @return retorna o valor do elemento removido. Retorna -1 caso a lista esteja vazia.
+ */
+int LIS_RemoverFim(Lista lista)
+{
     if( lista->tamanho > 0 )
     {
         No primeiro = lista->cabeca->proximo;
@@ -259,16 +288,6 @@ int LIS_RemoverInicio(Lista lista)
     {
         return -1;
     }
-}
-
-/*
- Função que remove um valor no fim da lista.
- @param lista - lista em que será feita a remoção
- @return retorna o valor do elemento removido. Retorna -1 caso a lista esteja vazia.
- */
-int LIS_RemoverFim(Lista lista)
-{
-        return -1;
 }
 
 /*
