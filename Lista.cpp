@@ -182,7 +182,7 @@ bool LIS_InserirFim(Lista lista, int v)
 bool LIS_Inserir(Lista lista, int v, int i)
 {
    
-    if(i > lista->tamanho+1)//tentando adicionar numa posicao fora do tamanho do vetor
+    if(i > lista->tamanho)//tentando adicionar numa posicao fora do tamanho do vetor
     {
         return false;
     }
