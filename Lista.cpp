@@ -181,13 +181,8 @@ bool LIS_InserirFim(Lista lista, int v)
  */
 bool LIS_Inserir(Lista lista, int v, int i)
 {
-    No no = CriarNo(v);
-    if( no == NULL )
-    {
-        return false;
-    }
-    
-    if(lista->tamanho == 0 && i <= 1)    
+   
+    if(i > lista->tamanho+1)  //lista->tamanho +1 > i  
     {
         return false;
     }
@@ -205,6 +200,13 @@ bool LIS_Inserir(Lista lista, int v, int i)
         {
             if(indice == i)
             {
+
+                No no = CriarNo(v);
+                if( no == NULL )
+                {
+                    return false;
+                }
+
                 no->anterior = no_iterador->anterior;
                 no->proximo = no_iterador;
 
