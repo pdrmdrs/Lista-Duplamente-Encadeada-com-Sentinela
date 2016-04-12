@@ -227,8 +227,7 @@ bool LIS_Inserir(Lista lista, int v, int i)
                 indice += 1;
             }
         }
-    }
-    
+    }  
 } 
 
 /*
@@ -297,8 +296,50 @@ int LIS_RemoverFim(Lista lista)
  */
 int LIS_Remover(Lista lista, int indice)
 {
-       return -1;
-}
+    if(indice == 1)//remover no inicio
+    {
+        LIS_RemoverInicio(lista);
+    }
+    else if(indice == lista->tamanho)//remover no final
+    {
+        LIS_RemoverFim(lista);
+    }
+    else if(indice > lista->tamanho)//tentando remover numa posicao maior que o tamanho do vetor
+    {
+        return -1;
+    }
+    else//remover em uma outra posicao
+    {
+        int i = 1;
+
+        No iterador = lista->cabeca->proximo;//pega o primeiro elemento da lista para ser o iterador
+
+        while(iterador != lista->cauda)//vai percorrer a lista até chegar na cauda
+        {
+            if(i == indice)//se o indice for o mesmo da posicao indicada, remover o nó e retornar o seu valor
+            {
+                iterador->proximo->anterior = iterador->anterior;
+                iterador->anterior->proximo = iterador->proximo;
+
+                int valor;
+
+                valor = iterador->valor;
+
+                lista->tamanho -= 1;
+
+                DestruirNo(iterador);
+
+                return valor;
+            }
+            else//se o indice for diferente da posicao indicada, atualizar o iterador e incrementar o indice
+            {
+                iterador = iterador->proximo;
+                i += 1;
+            }
+        }
+    }  
+} 
+
 
 /*
     Função que ordena a lista. (Obs.: Implemente os algoritmos: selection sort, insertion sort e bubble sort.)
