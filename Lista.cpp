@@ -25,19 +25,19 @@ Lista LIS_Criar()
         return NULL;
     }
     
-    lista->cabeca = CriarNo(VALOR_QUALQUER);//CRIAR NO PARA A CABEÇA DA LISTA
+    lista->cabeca = CriarNo(VALOR_QUALQUER);//criar no para a cabeça da lista
     if( lista->cabeca == NULL )
     {
         return NULL;
     }
 
-    lista->cauda = CriarNo(VALOR_QUALQUER);//CRIAR NO PARA A CAUDA DA LISTA
+    lista->cauda = CriarNo(VALOR_QUALQUER);//criar no para a cauda da lista
     if( lista->cauda == NULL )
     {
         return NULL;
     }
     
-    //COMO É UMA LISTA DUPLAMENTE ENCADEADA COM SENTINELA, TEMOS:
+    //setar valores para o proximo e anterior da cabeça e da cauda
     lista->cabeca->proximo  = lista->cauda;
     lista->cabeca->anterior = NULL;
 
@@ -72,7 +72,7 @@ int LIS_Buscar(Lista lista, int chave)
             else
             {
                 no = no->proximo;
-                indice++;
+                indice += 1;
             }
         }
         return -1;
@@ -106,7 +106,7 @@ int LIS_PegarValor(Lista lista, int i)
             else
             {
                 no = no->proximo;
-                indice++;
+                indice += 1;
             }
         }
         return -1;
@@ -181,55 +181,54 @@ bool LIS_InserirFim(Lista lista, int v)
  */
 bool LIS_Inserir(Lista lista, int v, int i)
 {
-   
-    if(i > lista->tamanho)//tentando adicionar numa posicao maior que o tamanho do vetor
-    {
-        return false;
-    }
-    else if(i == 1)//adicionar no inicio
+    if(i == 1)//adicionar no inicio
     {
         LIS_InserirInicio(lista, v);
     }
-    else if(i == lista->tamanho)//adicionar no final
+    else if(i == (lista->tamanho+1))//adicionar no final
     {
         LIS_InserirFim(lista, v);
+    }
+    else if(i > (lista->tamanho+1))//tentando adicionar numa posicao maior que o tamanho do vetor
+    {
+        return false;
     }
     else//adicionar em uma outra posicao
     {
         int indice = 1;
 
-        No no_iterador = lista->cabeca->proximo;
+        No iterador = lista->cabeca->proximo;//pega o primeiro elemento da lista para ser o iterador
 
-        while(no_iterador != lista->cauda)
+        while(iterador != lista->cauda)//vai percorrer a lista até chegar na cauda
         {
-            if(indice == i)
+            if(i == indice)//se o indice for o mesmo da posicao indicada, criar o nó e adicionar ele
             {
-
-                No no = CriarNo(v);
+                No no = CriarNo(v);//criar o nó que ira ser inserido na lista
                 if( no == NULL )
                 {
                     return false;
                 }
 
-                no->anterior = no_iterador->anterior;
-                no->proximo = no_iterador;
+                //setar o proximo e o anterior do novo nó
+                no->anterior = iterador->anterior;
+                no->proximo = iterador;
 
-                no->anterior->proximo = no;
-                no_iterador->anterior = no;
+                //atualizar o proximo do elemento anterior ao novo nó e o anterior do proximo elemento do novo nó
+                iterador->anterior->proximo = no;
+                iterador->anterior = no;
 
                 lista->tamanho += 1;
 
                 return true;
             }
-            else
+            else//se o indice for diferente da posicao indicada, atualizar o iterador e incrementar o indice
             {
-                no_iterador = no_iterador->proximo;
+                iterador = iterador->proximo;
                 indice += 1;
             }
         }
     }
     
-    return false;
 } 
 
 /*
