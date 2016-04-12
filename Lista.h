@@ -36,7 +36,7 @@ typedef enum {
     LIS_CaudaProximo,
     LIS_CabecaCauda,
     LIS_EncadeamentoErrado
-} LIS_tpVerificacao ;
+} LIS_tpVerificacao ; 
 
 //Estas duas funções já estão implementadas. Não precisa modificá-las. Use a função LIS_Imprimir para ver o estado da lista e assim ajudar durante sua implementação.
 LIS_tpVerificacao LIS_Verificar(Lista);
