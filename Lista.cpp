@@ -241,18 +241,18 @@ int LIS_RemoverInicio(Lista lista)
 {    
     if( lista->tamanho > 0 )
     {
-        No ultimo = lista->cauda->anterior;
-        
-        lista->cauda->anterior = ultimo->anterior;
-        
-        ultimo->anterior->proximo = lista->cauda;
-        
-        int valor = ultimo->valor;
-        
+        No primeiro = lista->cabeca->proximo;
+
+        lista->cabeca->proximo = primeiro->proximo;
+
+        primeiro->proximo->anterior = lista->cabeca;
+
+        int valor = primeiro->valor;
+
         lista->tamanho -= 1;
-        
-        DestruirNo(ultimo);
-        
+
+        DestruirNo(primeiro);
+
         return valor;
     }
     else
@@ -270,18 +270,18 @@ int LIS_RemoverFim(Lista lista)
 {
     if( lista->tamanho > 0 )
     {
-        No primeiro = lista->cabeca->proximo;
-
-        lista->cabeca->proximo = primeiro->proximo;
-
-        primeiro->proximo->anterior = lista->cabeca;
-
-        int valor = primeiro->valor;
-
+        No ultimo = lista->cauda->anterior;
+        
+        lista->cauda->anterior = ultimo->anterior;
+        
+        ultimo->anterior->proximo = lista->cauda;
+        
+        int valor = ultimo->valor;
+        
         lista->tamanho -= 1;
-
-        DestruirNo(primeiro);
-
+        
+        DestruirNo(ultimo);
+        
         return valor;
     }
     else

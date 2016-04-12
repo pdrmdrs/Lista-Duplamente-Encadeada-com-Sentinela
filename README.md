@@ -1,1 +1,1 @@
-# Lista_duplamente_encadeada_com_sentinela
+# Lista duplamente encadeada com sentinela
