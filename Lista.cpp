@@ -118,6 +118,40 @@ int LIS_PegarValor(Lista lista, int i)
 }
 
 /*
+ Função que retorna o valor de um elemento na lista que está na posição indicada pelo parâmetro i.
+ @param lista - lista em que será feita a busca
+ @param i - indica a posição do elemento cujo valor se deseja retornar
+ @return valor do elemento na i-esima posição da lista. Retorna -1 se não existir elemento na i-esima posição
+ */
+No LIS_PegarNo(Lista lista, int i)
+{
+    if( lista->tamanho > 0)
+    {
+        int indice = 1;
+
+        No no = lista->cabeca->proximo;
+
+        while(no != lista->cauda)
+        {
+            if(indice == i)
+            {
+                return no;
+            }
+            else
+            {
+                no = no->proximo;
+                indice += 1;
+            }
+        }
+        return NULL;
+    }
+    else
+    {
+        return NULL;    
+    }
+}
+
+/*
  Função que insere um valor no início da lista. Após a execução desta função, o elemento inserido será o primeiro elemento da lista.
  @param lista - lista em que será feita a inserção
  @param v - valor a ser inserido na lista
@@ -344,8 +378,48 @@ int LIS_Remover(Lista lista, int indice)
 /*
     Função que ordena a lista. (Obs.: Implemente os algoritmos: selection sort, insertion sort e bubble sort.)
  */
-void LIS_Ordenar(Lista lista)
+void LIS_Ordenar(Lista lista)//selection sort
 {
+    int i, j;
+    No min, aux, no_i, no_j;
+
+    for(i = 0; i < (lista->tamanho-1); i++)
+    {
+        no_i = LIS_PegarNo(lista, i);
+        min = no_i;
+
+        for(j = (i+1); j < (lista->tamanho); j++)
+        {
+            /*
+            no_j = LIS_PegarNo(lista, j);
+            if(no_j->valor < min->valor)
+            {
+                min = no_j;
+            }
+            */
+        }
+
+        if(no_i->valor != min->valor)
+        {
+            /*
+            aux = no_i;
+
+            //colocar no_i no lugar do min;
+            no_i->proximo = min->proximo;
+            no_i->anterior = min->anterior;
+
+            min->anterior->proximo = no_i;
+            min->proximo->anterior = no_i;
+
+            //colocar min no lugar do no_i
+            min->proximo = aux->proximo;
+            min->anterior = aux->anterior;
+
+            aux->anterior->proximo = min;
+            aux->proximo->anterior = min;
+            */
+        }
+    }
 }
 
 /*

@@ -58,6 +58,7 @@ int LIS_Remover(Lista, int);
 
 int LIS_Buscar(Lista, int);
 int LIS_PegarValor(Lista, int);
+No LIS_PegarNo(Lista, int );
 
 void LIS_Ordenar(Lista);
 Lista LIS_Intercalar(Lista, Lista);
