@@ -380,45 +380,49 @@ int LIS_Remover(Lista lista, int indice)
  */
 void LIS_Ordenar(Lista lista)//selection sort
 {
-    int i, j;
-    No min, aux, no_i, no_j;
-
-    for(i = 0; i < (lista->tamanho-1); i++)
+    if(lista->tamanho > 1)//se a lista tiver tamanho 0 ou 1, não precisa ser ordenada
     {
-        no_i = LIS_PegarNo(lista, i);
-        min = no_i;
-
-        for(j = (i+1); j < (lista->tamanho); j++)
+	    int i, j, min;
+        No aux, no_min, no_i, no_j;
+	
+        for(i = 0; i < (lista->tamanho-1); i++)
         {
-            /*
-            no_j = LIS_PegarNo(lista, j);
-            if(no_j->valor < min->valor)
-            {
-                min = no_j;
-            }
-            */
-        }
+        	min = i;
 
-        if(no_i->valor != min->valor)
-        {
-            /*
-            aux = no_i;
+		for(j = (i+1); j < (lista->tamanho); j++)
+		{
+		    no_j = LIS_PegarNo(lista, j);
+		    no_min = LIS_PegarNo(lista, min);
 
-            //colocar no_i no lugar do min;
-            no_i->proximo = min->proximo;
-            no_i->anterior = min->anterior;
+		    if(no_j->valor < no_min->valor)
+			{
+				min = j;
+			}
+		}
 
-            min->anterior->proximo = no_i;
-            min->proximo->anterior = no_i;
+		//no_i = LIS_PegarNo(lista, i);
 
-            //colocar min no lugar do no_i
-            min->proximo = aux->proximo;
-            min->anterior = aux->anterior;
+		//if(no_i->valor != no_min->valor)
+		//{
+		    //std::cout << "no_i->valor != no_min->valor" << std::endl;
+		    /*aux = no_i;
 
-            aux->anterior->proximo = min;
-            aux->proximo->anterior = min;
-            */
-        }
+		    //colocar no_i no lugar do min;
+		    no_i->proximo = min->proximo;
+		    no_i->anterior = min->anterior;
+
+		    min->anterior->proximo = no_i;
+		    min->proximo->anterior = no_i;
+
+		    //colocar min no lugar do no_i
+		    min->proximo = aux->proximo;
+		    min->anterior = aux->anterior;
+
+		    aux->anterior->proximo = min;
+		    aux->proximo->anterior = min;*/
+		    
+		//}
+	    }
     }
 }
 
