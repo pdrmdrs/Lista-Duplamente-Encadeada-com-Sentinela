@@ -396,7 +396,7 @@ void LIS_Ordenar(Lista lista)//selection sort
 
 		    if(no_j->valor < no_min->valor)
 			{
-				min = j;
+				//min = j;
 			}
 		}
 
@@ -404,7 +404,6 @@ void LIS_Ordenar(Lista lista)//selection sort
 
 		//if(no_i->valor != no_min->valor)
 		//{
-		    //std::cout << "no_i->valor != no_min->valor" << std::endl;
 		    /*aux = no_i;
 
 		    //colocar no_i no lugar do min;
